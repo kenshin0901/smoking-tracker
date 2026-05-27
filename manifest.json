@@ -1,0 +1,22 @@
+{
+  "name": "喫煙記録アプリ",
+  "short_name": "喫煙記録",
+  "description": "喫煙本数を記録・分析するアプリ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f4f8",
+  "theme_color": "#e94560",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

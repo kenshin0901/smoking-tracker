@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>喫煙記録アプリ</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="app-header">
+    <h1>🚬 喫煙記録</h1>
+    <button id="themeToggle" class="icon-btn" title="テーマ切替">🌙</button>
+  </header>
+
+  <!-- ナビゲーション -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-page="home">🏠 ホーム</button>
+    <button class="nav-btn" data-page="history">📋 履歴</button>
+    <button class="nav-btn" data-page="stats">📊 統計</button>
+    <button class="nav-btn" data-page="settings">⚙️ 設定</button>
+  </nav>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+
+    <!-- ホームページ -->
+    <section id="page-home" class="page active">
+      <div class="today-card">
+        <p class="label">今日の本数</p>
+        <p id="todayCount" class="big-number">0</p>
+        <p class="label">本</p>
+      </div>
+
+      <button id="recordBtn" class="record-btn">
+        🚬 吸った！
+      </button>
+
+      <div class="stats-row">
+        <div class="mini-card">
+          <p class="label">今週</p>
+          <p id="weekCount" class="mini-number">0本</p>
+        </div>
+        <div class="mini-card">
+          <p class="label">今月</p>
+          <p id="monthCount" class="mini-number">0本</p>
+        </div>
+        <div class="mini-card">
+          <p class="label">今月の出費</p>
+          <p id="monthCost" class="mini-number">¥0</p>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>直近7日間</h3>
+        <canvas id="weekChart"></canvas>
+      </div>
+    </section>
+
+    <!-- 履歴ページ -->
+    <section id="page-history" class="page">
+      <div class="page-header">
+        <h2>📋 喫煙履歴</h2>
+        <button id="clearTodayBtn" class="danger-btn-sm">今日をリセット</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <!-- 統計ページ -->
+    <section id="page-stats" class="page">
+      <h2>📊 統計</h2>
+
+      <div class="chart-card">
+        <h3>時間帯別（今日）</h3>
+        <canvas id="hourChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h3>月別推移</h3>
+        <canvas id="monthChart"></canvas>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <p class="label">1日平均</p>
+          <p id="avgDay" class="stat-val">-</p>
+        </div>
+        <div class="stat-item">
+          <p class="label">最多記録日</p>
+          <p id="maxDay" class="stat-val">-</p>
+        </div>
+        <div class="stat-item">
+          <p class="label">総本数</p>
+          <p id="totalAll" class="stat-val">-</p>
+        </div>
+        <div class="stat-item">
+          <p class="label">総出費</p>
+          <p id="totalCost" class="stat-val">-</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 設定ページ -->
+    <section id="page-settings" class="page">
+      <h2>⚙️ 設定</h2>
+
+      <div class="settings-card">
+        <label>1箱の価格（円）</label>
+        <input type="number" id="pricePerBox" class="setting-input" placeholder="例: 580" />
+
+        <label>1箱の本数</label>
+        <input type="number" id="cigsPerBox" class="setting-input" placeholder="例: 20" />
+
+        <label>目標本数（1日）</label>
+        <input type="number" id="dailyGoal" class="setting-input" placeholder="例: 10" />
+
+        <button id="saveSettings" class="save-btn">💾 保存</button>
+      </div>
+
+      <div class="settings-card">
+        <h3>データ管理</h3>
+        <button id="exportBtn" class="export-btn">📤 CSVエクスポート</button>
+        <button id="deleteAllBtn" class="danger-btn">🗑️ 全データ削除</button>
+      </div>
+
+      <div class="settings-card">
+        <h3>PWAインストール</h3>
+        <p class="hint">ブラウザの「ホーム画面に追加」でアプリとして使えます</p>
+        <button id="installBtn" class="save-btn" style="display:none">📲 インストール</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- トースト通知 -->
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

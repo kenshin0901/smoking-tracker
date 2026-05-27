@@ -1,0 +1,303 @@
+/* ===== リセット & 変数 ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f4f4f8;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --sub: #666;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --border: #e0e0e0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --card: #16213e;
+  --text: #eaeaea;
+  --sub: #aaa;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --border: #2a2a4a;
+  --shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 70px;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ===== ヘッダー ===== */
+.app-header {
+  background: var(--accent);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 { font-size: 1.3rem; font-weight: 700; }
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ===== ナビゲーション ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  display: flex;
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+}
+
+.nav-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 4px;
+  font-size: 0.72rem;
+  color: var(--sub);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-btn.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ===== メインコンテンツ ===== */
+.main-content { padding: 16px; max-width: 480px; margin: 0 auto; }
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* ===== ホーム ===== */
+.today-card {
+  background: linear-gradient(135deg, var(--accent), #c0392b);
+  color: white;
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.big-number {
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin: 8px 0;
+}
+
+.label { font-size: 0.9rem; opacity: 0.85; }
+
+.record-btn {
+  width: 100%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+  active-transform: scale(0.97);
+}
+
+.record-btn:active { transform: scale(0.97); }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.mini-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.mini-number { font-size: 1.1rem; font-weight: 700; margin-top: 4px; }
+
+/* ===== グラフカード ===== */
+.chart-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+
+.chart-card h3 { font-size: 0.95rem; margin-bottom: 16px; color: var(--sub); }
+
+/* ===== 履歴 ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.page-header h2 { font-size: 1.2rem; }
+
+.history-list { display: flex; flex-direction: column; gap: 8px; }
+
+.history-item {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+}
+
+.history-date { font-weight: 700; font-size: 0.95rem; }
+.history-count { font-size: 1.1rem; color: var(--accent); font-weight: 700; }
+.history-times { font-size: 0.78rem; color: var(--sub); margin-top: 4px; }
+
+/* ===== 統計 ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-val { font-size: 1.2rem; font-weight: 700; margin-top: 6px; color: var(--accent); }
+
+/* ===== 設定 ===== */
+.settings-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-card h3 { font-size: 1rem; font-weight: 700; }
+.settings-card label { font-size: 0.9rem; color: var(--sub); }
+
+.setting-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hint { font-size: 0.85rem; color: var(--sub); }
+
+/* ===== ボタン ===== */
+.save-btn {
+  background: var(--accent2);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.save-btn:hover { opacity: 0.85; }
+
+.export-btn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.danger-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.danger-btn-sm {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+/* ===== トースト ===== */
+.toast {
+  position: fixed;
+  bottom: 85px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #333;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 999;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
